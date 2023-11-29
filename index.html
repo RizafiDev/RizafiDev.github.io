@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kalkulator Tailwind</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header>
+      <nav class="flex items-center justify-between m-5 mt-8">
+        <div class="img w-40 relative">
+          <img src="/logo.png" alt="" />
+        </div>
+        <button class="bg-orange-500 rounded-full items-center">
+          <a class="px-3 text-sm justify-center" href="">Back</a>
+        </button>
+      </nav>
+    </header>
+    <section>
+      <div
+        class="container-master items-center justify-center flex flex-row mx-2"
+      >
+        <!--Kalkulator-->
+        <div
+          class="container-kal-universal flex flex-col items-center p-4 border-2 rounded-xl"
+        >
+          <div class="py-3">
+            <h1 class="font-semibold text-2xl">Kalkulator Ilmiah</h1>
+          </div>
+          <div class="py-2 items-center flex">
+            <input
+              type="text"
+              readonly
+              placeholder="0"
+              id="display"
+              class="w-[274px] bg-transparent text-xl placeholder:text-white border-4 rounded-xl pl-3 py-3 m-2 outline-none"
+            />
+          </div>
+          <div class="py-2 items-center justify-center flex">
+            <button
+              class="m-2 w-14 h-14 bg-orange-500 border-none rounded-xl"
+              onclick="clearDisplay()"
+            >
+              C
+            </button>
+            <button
+              class="m-2 w-14 h-14 bg-purple-700 border-none rounded-xl"
+              onclick="appendToDisplay('%')"
+            >
+              %
+            </button>
+            <button
+              class="m-2 w-14 h-14 bg-purple-700 border-none rounded-xl"
+              onclick="appendToDisplay('/')"
+            >
+              /
+            </button>
+            <button
+              class="m-2 w-14 h-14 bg-purple-700 border-none rounded-xl"
+              onclick="appendToDisplay('**')"
+            >
+              ^
+            </button>
+          </div>
+          <div class="justify-center items-center flex">
+            <button
+              class="m-2 w-14 h-14 bg-gray-700 border-none rounded-xl"
+              onclick="appendToDisplay('9')"
+            >
+              9
+            </button>
+            <button
+              class="m-2 w-14 h-14 bg-gray-700 border-none rounded-xl"
+              onclick="appendToDisplay('8')"
+            >
+              8
+            </button>
+            <button
+              class="m-2 w-14 h-14 bg-gray-700 border-none rounded-xl"
+              onclick="appendToDisplay('7')"
+            >
+              7
+            </button>
+            <button
+              class="m-2 w-14 h-14 bg-purple-700 border-none rounded-xl"
+              onclick="appendToDisplay('*')"
+            >
+              X
+            </button>
+          </div>
+          <div class="justify-center items-center flex">
+            <button
+              class="m-2 w-14 h-14 bg-gray-700 border-none rounded-xl"
+              onclick="appendToDisplay('6')"
+            >
+              6
+            </button>
+            <button
+              class="m-2 w-14 h-14 bg-gray-700 border-none rounded-xl"
+              onclick="appendToDisplay('5')"
+            >
+              5
+            </button>
+            <button
+              class="m-2 w-14 h-14 bg-gray-700 border-none rounded-xl"
+              onclick="appendToDisplay('4')"
+            >
+              4
+            </button>
+            <button
+              class="m-2 w-14 h-14 bg-purple-700 border-none rounded-xl"
+              onclick="appendToDisplay('+')"
+            >
+              +
+            </button>
+          </div>
+          <div class="justify-center items-center flex">
+            <button
+              class="m-2 w-14 h-14 bg-gray-700 border-none rounded-xl"
+              onclick="appendToDisplay('3')"
+            >
+              3
+            </button>
+            <button
+              class="m-2 w-14 h-14 bg-gray-700 border-none rounded-xl"
+              onclick="appendToDisplay('2')"
+            >
+              2
+            </button>
+            <button
+              class="m-2 w-14 h-14 bg-gray-700 border-none rounded-xl"
+              onclick="appendToDisplay('1')"
+            >
+              1
+            </button>
+            <button
+              class="m-2 w-14 h-14 bg-purple-700 border-none rounded-xl"
+              onclick="appendToDisplay('-')"
+            >
+              -
+            </button>
+          </div>
+          <div class="justify-center items-center flex">
+            <button
+              class="m-2 w-14 h-14 bg-gray-700 border-none rounded-xl"
+              onclick="appendToDisplay('.')"
+            >
+              .
+            </button>
+            <button
+              class="m-2 w-14 h-14 bg-gray-700 border-none rounded-xl"
+              onclick="appendToDisplay('0')"
+            >
+              0
+            </button>
+            <button
+              class="m-2 w-14 h-14 bg-gray-700 border-none rounded-xl"
+              onclick="appendToDisplay('(')"
+            >
+              (
+            </button>
+            <button
+              class="m-2 w-14 h-14 bg-purple-700 border-none rounded-xl"
+              onclick="appendToDisplay(')')"
+            >
+              )
+            </button>
+          </div>
+          <div class="justify-center items-center flex">
+            <button
+              class="m-2 h-14 w-62 bg-orange-500 border-none rounded-xl"
+              onclick="calculate()"
+            >
+              =
+            </button>
+          </div>
+        </div>
+        <!--Suhu-->
+        <div
+          class="container-kal-universal m-5 flex flex-col items-center p-4 border-2 rounded-xl"
+        >
+          <div class="py-3">
+            <h1 class="font-semibold text-2xl">Konverter Suhu</h1>
+          </div>
+          <div class="py-2 items-center flex">
+            <input
+              type="number"
+              placeholder="Masukkan Suhu"
+              id="inputTemperature"
+              class="w-[274px] bg-transparent text-xl placeholder:text-white border-4 rounded-xl pl-3 py-3 m-2 outline-none"
+            />
+          </div>
+          <div class="py-2 items-center justify-center flex">
+            <button
+              class="m-2 w-[128px] h-14 bg-purple-700 border-none rounded-xl"
+            >
+              Suhu Awal
+            </button>
+            <button
+              class="m-2 w-[128px] h-14 bg-purple-700 border-none rounded-xl"
+            >
+              Suhu Target
+            </button>
+          </div>
+          <div class="justify-center items-center flex">
+            <select
+              id="selectFrom"
+              class="m-2 h-[128px] w-[128px] bg-purple-700 border-none rounded-xl text-center text-4xl"
+            >
+              <option value="celsius">C</option>
+              <option value="fahrenheit">F</option>
+              <option value="kelvin">K</option>
+              <option value="reamur">R</option>
+            </select>
+            <select
+              id="selectTo"
+              class="m-2 w-[128px] h-[128px] bg-purple-700 border-none rounded-xl text-center text-4xl"
+            >
+              <option value="celsius">C</option>
+              <option value="fahrenheit">F</option>
+              <option value="kelvin">K</option>
+              <option value="reamur">R</option>
+            </select>
+          </div>
+          <div class="justify-center items-center flex">
+            <button
+              onclick="convertTemperature()"
+              class="m-2 h-14 w-62 bg-orange-500 border-none rounded-xl"
+            >
+              Konversi
+            </button>
+          </div>
+          <div class="justify-center items-center flex">
+            <button
+              class="m-2 h-14 w-62 text-center justify-center bg-orange-500 border-none rounded-xl"
+            >
+              Hasil Konversi
+            </button>
+          </div>
+
+          <div class="items-center flex">
+            <p
+              id="resultSuhu"
+              class="w-[274px] h-14 text-center font-semibold bg-transparent text-xl border-4 rounded-xl py-3 m-2"
+            >
+              Hasil
+            </p>
+          </div>
+        </div>
+        <!--Akar-->
+        <div
+          class="container-kal-universal m-5 flex flex-col items-center p-4 border-2 rounded-xl"
+        >
+          <div class="py-3">
+            <h1 class="font-semibold text-2xl">Penghitung Akar</h1>
+          </div>
+          <div class="py-2 items-center flex">
+            <input
+              type="number"
+              placeholder="Masukkan Akar"
+              id="inputAkar"
+              class="w-[274px] bg-transparent text-xl placeholder:text-white border-4 rounded-xl pl-3 py-3 m-2 outline-none"
+            />
+          </div>
+          <div class="py-2 items-center justify-center flex">
+            <button
+              class="m-2 w-[270px] h-14 bg-purple-700 border-none rounded-xl"
+            >
+              Akar Target
+            </button>
+          </div>
+          <div class="justify-center items-center flex">
+            <select
+              id="rootType"
+              class="m-2 w-[270px] h-[128px] bg-purple-700 border-none rounded-xl text-center text-4xl"
+            >
+              <option value="2"><sup>2</sup>√</option>
+              <option value="3"><sup>3</sup>√</option>
+              <option value="4"><sup>4</sup>√</option>
+              <option value="5"><sup>5</sup>√</option>
+            </select>
+          </div>
+          <div class="justify-center items-center flex">
+            <button
+              onclick="hitungAkar()"
+              class="m-2 h-14 w-62 bg-orange-500 border-none rounded-xl"
+            >
+              Hitung Akar
+            </button>
+          </div>
+          <div class="justify-center items-center flex">
+            <button
+              class="m-2 h-14 w-62 text-center justify-center bg-orange-500 border-none rounded-xl"
+            >
+              Hasil Akar
+            </button>
+          </div>
+
+          <div class="items-center flex">
+            <p
+              id="resultAkar"
+              class="w-[274px] h-14 text-center font-semibold bg-transparent text-xl border-4 rounded-xl py-3 m-2"
+            >
+              Hasil
+            </p>
+          </div>
+        </div>
+        <!--Bilangan-->
+        <div
+          class="container-kal-universal m-5 flex flex-col items-center p-4 border-2 rounded-xl"
+        >
+          <div class="py-3">
+            <h1 class="font-semibold text-2xl">Konverter Bilangan</h1>
+          </div>
+          <div class="py-2 items-center flex">
+            <input
+              type="number"
+              placeholder="Masukkan Bilangan"
+              id="inputBilangan"
+              class="w-[274px] bg-transparent text-xl placeholder:text-white border-4 rounded-xl pl-3 py-3 m-2 outline-none"
+            />
+          </div>
+          <div class="py-2 items-center justify-center flex">
+            <button
+              class="m-2 w-[128px] h-14 bg-purple-700 border-none rounded-xl"
+            >
+              Satuan Awal
+            </button>
+            <button
+              class="m-2 w-[128px] h-14 bg-purple-700 border-none rounded-xl"
+            >
+              Satuan Target
+            </button>
+          </div>
+          <div class="justify-center items-center flex">
+            <select
+              id="selectBilanganAwal"
+              class="m-2 h-[128px] w-[128px] bg-purple-700 border-none rounded-xl text-center text-4xl"
+            >
+              <option value="binary">Biner</option>
+              <option value="decimal">Desimal</option>
+              <option value="hexadecimal">Heksadesimal</option>
+              <option value="octal">Oktal</option>
+            </select>
+            <select
+              id="selectBilanganAkhir"
+              class="m-2 w-[128px] h-[128px] bg-purple-700 border-none rounded-xl text-center text-4xl"
+            >
+              <option value="binaryResult">Biner</option>
+              <option value="decimalResult">Desimal</option>
+              <option value="hexadecimalResult">Heksadesimal</option>
+              <option value="octalResult">Oktal</option>
+            </select>
+          </div>
+          <div class="justify-center items-center flex">
+            <button
+              onclick="convertNumberBilangan()"
+              class="m-2 h-14 w-62 bg-orange-500 border-none rounded-xl"
+            >
+              Konversi
+            </button>
+          </div>
+          <div class="justify-center items-center flex">
+            <button
+              class="m-2 h-14 w-62 text-center justify-center bg-orange-500 border-none rounded-xl"
+            >
+              Hasil Konversi
+            </button>
+          </div>
+
+          <div class="items-center flex">
+            <p
+              id="hasilBilangan"
+              class="w-[274px] h-14 text-center font-semibold bg-transparent text-xl border-4 rounded-xl py-3 m-2"
+            >
+              Hasil
+            </p>
+          </div>
+        </div>
+        <!--End-->
+      </div>
+    </section>
+
+    <!--JS-->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="/akar.js"></script>
+    <script src="/bilangan.js"></script>
+    <script src="/suhu.js"></script>
+    <script src="/kalkulator.js"></script>
+  </body>
+</html>
